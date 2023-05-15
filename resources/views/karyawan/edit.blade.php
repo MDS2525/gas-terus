@@ -28,6 +28,8 @@
                     <input type="text" class="form-control" id="no_telp" name="no_telp"
                         value="{{ $karyawan->no_telp }}">
                 </div>
+
+
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
