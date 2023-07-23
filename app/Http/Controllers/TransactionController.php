@@ -23,7 +23,8 @@ class TransactionController extends Controller
         $request->validate([
             'customer_name' => 'required',
             'customer_address' => 'required',
-            'phone_number' => 'required',
+            'nama_barang' => 'required',
+            'harga' => 'required',
             'delivery_date' => 'required|date',
             'pickup_date' => 'nullable|date',
             'status' => 'required|in:not_picked_up,picked_up',
@@ -53,6 +54,8 @@ class TransactionController extends Controller
         $request->validate([
             'customer_name' => 'required',
             'customer_address' => 'required',
+            'nama_barang' => 'required',
+            'harga' => 'required',
             'phone_number' => 'required',
             'delivery_date' => 'required',
             'pickup_date' => 'required',
@@ -62,6 +65,8 @@ class TransactionController extends Controller
 
         $transaction->customer_name = $request->customer_name;
         $transaction->customer_address = $request->customer_address;
+        $transaction->nama_barang = $request->nama_barang;
+        $transaction->harga = $request->harga;
         $transaction->phone_number = $request->phone_number;
         $transaction->delivery_date = $request->delivery_date;
         $transaction->pickup_date = $request->pickup_date;

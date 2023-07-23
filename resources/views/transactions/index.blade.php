@@ -31,6 +31,8 @@
                         <tr>
                             <th>Nama Pelanggan</th>
                             <th>Alamat Pelanggan</th>
+                            <th>Nama Barang</th>
+                            <th>Harga</th>
                             <th>Nomor Telepon</th>
                             <th>Hari Penyerahan Barang</th>
                             <th>Hari Pengambilan Barang</th>
@@ -43,6 +45,8 @@
                             <tr>
                                 <td>{{ $transaction->customer_name }}</td>
                                 <td>{{ $transaction->customer_address }}</td>
+                                <td>{{ $transaction->nama_barang }}</td>
+                                <td>{{ $transaction->harga }}</td>
                                 <td>{{ $transaction->phone_number }}</td>
                                 <td>{{ \Carbon\Carbon::parse($transaction->delivery_date)->format('d-m-Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($transaction->pickup_date)->format('d-m-Y') }}</td>

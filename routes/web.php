@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DaftarHargaController;
+use App\Http\Controllers\OutletController;
 
 // Route Auth
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -39,5 +41,27 @@ Route::middleware('auth')->group(function () {
         Route::get('/transactions/{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
         Route::put('/transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update');
         Route::delete('/transactions/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+    });
+
+    // Daftar Harga
+    Route::prefix('daftar_harga')->group(function () {
+        Route::get('', [DaftarHargaController::class, 'index'])->name('daftar_harga.index');
+        Route::get('create', [DaftarHargaController::class, 'create'])->name('daftar_harga.create');
+        Route::post('', [DaftarHargaController::class, 'store'])->name('daftar_harga.store');
+        Route::get('{id}', [DaftarHargaController::class, 'show'])->name('daftar_harga.show');
+        Route::get('{id}/edit', [DaftarHargaController::class, 'edit'])->name('daftar_harga.edit');
+        Route::put('{id}', [DaftarHargaController::class, 'update'])->name('daftar_harga.update');
+        Route::delete('{id}', [DaftarHargaController::class, 'destroy'])->name('daftar_harga.destroy');
+    });
+
+    // Daftar Outlet
+    Route::prefix('outlet')->group(function () {
+        Route::get('', [OutletController::class, 'index'])->name('outlet.index');
+        Route::get('create', [OutletController::class, 'create'])->name('outlet.create');
+        Route::post('', [OutletController::class, 'store'])->name('outlet.store');
+        Route::get('{id}', [OutletController::class, 'show'])->name('outlet.show');
+        Route::get('{id}/edit', [OutletController::class, 'edit'])->name('outlet.edit');
+        Route::put('{id}', [OutletController::class, 'update'])->name('outlet.update');
+        Route::delete('{id}', [OutletController::class, 'destroy'])->name('outlet.destroy');
     });
 });

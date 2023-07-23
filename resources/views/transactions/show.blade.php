@@ -13,6 +13,8 @@
         <div class="card-body">
             <p><strong>Nama Pelanggan:</strong> {{ $transaction->customer_name }}</p>
             <p><strong>Alamat Pelanggan:</strong> {{ $transaction->customer_address }}</p>
+            <p><strong>Nama Barang:</strong> {{ $transaction->nama_barang }}</p>
+            <p><strong>Harga:</strong> {{ $transaction->harga }}</p>
             <p><strong>Nomor Telepon:</strong> {{ $transaction->phone_number }}</p>
             <p><strong>Hari Penyerahan Barang:</strong>
                 {{ \Carbon\Carbon::parse($transaction->delivery_date)->format('d-m-Y') }}</p>

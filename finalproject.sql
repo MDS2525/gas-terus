@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Bulan Mei 2023 pada 20.46
+-- Waktu pembuatan: 23 Jul 2023 pada 21.31
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `finalproject`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `daftar_hargas`
+--
+
+CREATE TABLE `daftar_hargas` (
+  `id` int(11) NOT NULL,
+  `nama_barang` varchar(100) NOT NULL,
+  `kilogram` varchar(50) NOT NULL,
+  `harga` varchar(50) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `daftar_hargas`
+--
+
+INSERT INTO `daftar_hargas` (`id`, `nama_barang`, `kilogram`, `harga`, `created_at`, `updated_at`) VALUES
+(3, 'Pakaian', '1kg', 'Rp. 13.000.00', '2023-07-23 12:16:53', '2023-07-23 12:17:01');
 
 -- --------------------------------------------------------
 
@@ -58,7 +80,8 @@ CREATE TABLE `karyawans` (
 --
 
 INSERT INTO `karyawans` (`id`, `nama`, `email`, `alamat`, `no_telp`, `created_at`, `updated_at`) VALUES
-(1, 'Yanto', 'yanto123@gmail.com', 'jln wahid hasim, Condong Catur, Sleman, Yogyakarta', '08983792342', '2023-05-17 07:27:25', '2023-05-17 07:27:25');
+(1, 'Yanto', 'yanto123@gmail.com', 'jln wahid hasim, Condong Catur, Sleman, Yogyakarta', '08983792342', '2023-05-17 07:27:25', '2023-05-17 07:27:25'),
+(2, 'Anton', 'anton@gmail.com', 'Jogja', '088789013', '2023-07-23 10:29:57', '2023-07-23 10:29:57');
 
 -- --------------------------------------------------------
 
@@ -94,7 +117,31 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (34, '2023_05_17_183733_remove_name_from_users', 12),
 (35, '2023_05_17_183817_remove_name_from_users', 13),
 (36, '2023_05_17_184109_remove_name_from_users', 14),
-(37, '2023_05_17_184214_remove_name_from_users', 15);
+(37, '2023_05_17_184214_remove_name_from_users', 15),
+(38, '2023_07_23_182508_add_timestamps_to_daftar_hargas_table', 16),
+(39, '2023_07_23_182508_add_timestamps_to_outlet_table', 17);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `outlets`
+--
+
+CREATE TABLE `outlets` (
+  `id` int(11) NOT NULL,
+  `nama_outlet` varchar(100) NOT NULL,
+  `telp_outlet` int(50) NOT NULL,
+  `alamat_outlet` varchar(250) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `outlets`
+--
+
+INSERT INTO `outlets` (`id`, `nama_outlet`, `telp_outlet`, `alamat_outlet`, `created_at`, `updated_at`) VALUES
+(1, 'A Laundry', 8234972, 'jln wahid hasyim, depok, sleman', '2023-07-23 12:09:07', '2023-07-23 12:09:07');
 
 -- --------------------------------------------------------
 
@@ -138,6 +185,8 @@ CREATE TABLE `transactions` (
   `customer_name` varchar(255) NOT NULL,
   `customer_address` varchar(255) NOT NULL,
   `phone_number` varchar(255) NOT NULL,
+  `nama_barang` varchar(100) NOT NULL,
+  `harga` varchar(50) NOT NULL,
   `delivery_date` date NOT NULL,
   `pickup_date` date DEFAULT NULL,
   `status` enum('picked_up','not_picked_up') NOT NULL DEFAULT 'not_picked_up',
@@ -149,8 +198,8 @@ CREATE TABLE `transactions` (
 -- Dumping data untuk tabel `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `customer_name`, `customer_address`, `phone_number`, `delivery_date`, `pickup_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Dia', 'jln wahid hasim, congcat, sleman', '0836482234', '2023-05-16', '2023-05-19', 'not_picked_up', '2023-05-17 07:28:03', '2023-05-17 07:28:03');
+INSERT INTO `transactions` (`id`, `customer_name`, `customer_address`, `phone_number`, `nama_barang`, `harga`, `delivery_date`, `pickup_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Dia', 'jln wahid hasim, congcat, sleman', '0836482234', 'Baju 1kg', 'Rp. 15.000.00', '2023-05-16', '2023-05-19', 'not_picked_up', '2023-05-17 07:28:03', '2023-07-23 10:38:14');
 
 -- --------------------------------------------------------
 
@@ -171,11 +220,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(15, 'admin@gmail.com', '$2y$10$TBspsZ5ON1N1n3F6c4rMDe9qdqGDlPyglWExz8uTvq7IvzCiJNTQS', '2023-05-17 11:43:17', '2023-05-17 11:43:17');
+(15, 'admin@gmail.com', '$2y$10$TBspsZ5ON1N1n3F6c4rMDe9qdqGDlPyglWExz8uTvq7IvzCiJNTQS', '2023-05-17 11:43:17', '2023-05-17 11:43:17'),
+(16, 'admin2@gmail.com', '$2y$10$LTbyfgErcalCY.gPdScXC.Q..vSSu004NSaWlyW7OsyC3KIW9xF.G', '2023-07-23 12:18:25', '2023-07-23 12:18:25');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `daftar_hargas`
+--
+ALTER TABLE `daftar_hargas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `failed_jobs`
@@ -194,6 +250,12 @@ ALTER TABLE `karyawans`
 -- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `outlets`
+--
+ALTER TABLE `outlets`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -228,6 +290,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `daftar_hargas`
+--
+ALTER TABLE `daftar_hargas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -237,13 +305,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `karyawans`
 --
 ALTER TABLE `karyawans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT untuk tabel `outlets`
+--
+ALTER TABLE `outlets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -255,13 +329,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

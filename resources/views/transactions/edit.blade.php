@@ -23,6 +23,16 @@
                         value="{{ $transaction->customer_address }}" required>
                 </div>
                 <div class="form-group">
+                    <label for="nama_barang">Nama Barang</label>
+                    <input type="text" name="nama_barang" id="nama_barang" class="form-control"
+                        value="{{ $transaction->nama_barang }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="harga">Harga</label>
+                    <input type="text" name="harga" id="harga" class="form-control"
+                        value="{{ $transaction->harga }}" required>
+                </div>
+                <div class="form-group">
                     <label for="phone_number">Nomor Telepon</label>
                     <input type="tel" name="phone_number" id="phone_number" class="form-control"
                         value="{{ $transaction->phone_number }}" required>
